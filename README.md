@@ -1,4 +1,4 @@
-## Getting Started
+# Getting Started
 
 First, run the development server:
 
@@ -59,3 +59,9 @@ Overall, approach the task with professionalism, attention to detail, and a focu
     - Result display
     - Other (please specify)
 
+# Folder structure
+  - app/lib: data fetchings and such
+  - app/ui: UI components
+  - app/ui/pokemonList: components related to pokemon list
+  - app/ui/pokemonDetails: components related to pokemon details
+  
