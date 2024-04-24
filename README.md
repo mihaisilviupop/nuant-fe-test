@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
@@ -16,21 +14,48 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Nuant FE Test
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project uses vite react-ts template which provides a minimal setup to get React working in Vite with ESLint rules.
 
-## Learn More
+It's been configured with Tailwindcss in case you want to use it Pokenode to retrieve the data of Pokemons
 
-To learn more about Next.js, take a look at the following resources:
+- [Pokenode](https://pokenode-ts.vercel.app/) (hint for the pokenode usage, PokemonClient has very helpful functions like `listPokemons`, `listTypes`, `getPokemonById` and `getPokemonByName` and many options more!) 
+- [Tailwind](https://tailwindcss.com/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The purpose of the test is to implement an app that have the ability of :
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Search for Pokemon by `name` and the posibility to filter the results by `type`
+  (User can search by name, user can filter pokemons by type, user can do both at the same time also)
+- Display the search results with enough detail to be able to identify to which Pokemon each result belongs.(Name and a image would do)
+- View more information about the Pokemon on a dedicated page by clicking a search result. (You can display Name, different sprites, weight, height and basic information, dealing with linked entities will be bonus point but arent really mandatory).
+- See the previous search results when navigating back to the search page from the pokemon details page.
 
-## Deploy on Vercel
+So basically something like:
+![Screenshot](screenshot.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-Tool and Library Selection: You're encouraged to leverage any libraries, frameworks, or tools that you believe will streamline the development process and enhance the quality of the final product. Whether it's a front-end framework like React.js or a design tool like Figma, choose what aligns best with your skillset and the project requirements.
+
+-Approach to Task: Treat this technical test as you would a real-world project. Break down the task into manageable components, define clear objectives, and follow best practices for code organization, documentation, and testing. Your approach should reflect your ability to deliver high-quality work within a given timeframe.
+
+-Commit Log: Provide a detailed commit log that outlines your thought process, decisions, and implementation steps throughout the project. This allows reviewers to understand how you approached the task, the challenges you encountered, and how you resolved them. It also demonstrates your ability to work collaboratively and communicate effectively within a team setting.
+
+-Long-Term Perspective: Consider this task as part of a larger project with potential for future iterations and enhancements. Your implementation should be flexible, scalable, and well-structured to accommodate additional functionalities or changes down the line. Think about how your codebase can be easily maintained and extended by other developers in the future.
+Overall, approach the task with professionalism, attention to detail, and a focus on delivering a high-quality solution that meets the project requirements and demonstrates your technical skills and expertise.
+
+
+
+
+ ### Submitting
+
+  To submit your finished project, share with us a link to a GitHub repository containing its code. Along with instructions on how to run the app, include answers to the following:
+
+- What part of building the project was the most difficult? Why?
+- How long did it take to have this test completed ? Which part of the test took you longer? Could you specify roughly the amount of time it took you to do the following:
+    - Set up environment    
+    - Search feature
+    - Filter feature
+    - Result display
+    - Other (please specify)
+
