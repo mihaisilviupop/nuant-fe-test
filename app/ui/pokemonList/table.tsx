@@ -1,7 +1,11 @@
 import { fetchPokemonList } from '@/app/lib/data';
 
-export default async function PokemonsTable() {
-    const pokemonList = await fetchPokemonList();
+export default async function PokemonsTable({
+    currentPage,
+}: {
+    currentPage: number;
+}) {
+    const pokemonList = await fetchPokemonList(currentPage);
 
     return <table className="min-w-full md:table dark:text-white light:text-gray-900">
         <thead className="rounded-lg text-left text-sm font-normal">

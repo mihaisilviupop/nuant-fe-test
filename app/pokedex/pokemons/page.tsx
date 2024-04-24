@@ -1,9 +1,15 @@
-import { fetchPokemonList } from '@/app/lib/data'
 import PokemonsTable from '@/app/ui/pokemonList/table'
 
-export default async function Page() {
+export default async function Page({
+    searchParams,
+}: {
+    searchParams?: {
+        page?: string;
+    };
+}) {
+    const currentPage = Number(searchParams?.page) || 1;
 
     return (
-        <PokemonsTable />
+        <PokemonsTable currentPage={currentPage} />
     )
 }
