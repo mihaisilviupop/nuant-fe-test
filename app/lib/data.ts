@@ -31,7 +31,13 @@ export async function fetchPokemonList({
         const pokemonList = pokemonListPromiseResultList
             .reduce((accumulator, result) => result.status === 'fulfilled' ? [...accumulator, result.value] : accumulator, [] as Pokemon[]);
 
-        return pokemonList;
+        return pokemonList.map(({ id, name, sprites }) => {
+            return {
+                id,
+                name,
+                image: sprites.front_shiny ?? sprites.front_default
+            }
+        });
     } catch (e) {
         throw new Error('Failed to fetch pokemon list');
     }
