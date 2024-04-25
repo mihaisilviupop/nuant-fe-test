@@ -52,6 +52,15 @@ export async function getPokemonListTotalPages(query = '') {
     }
 }
 
+export async function fetchPokemonTypeList() {
+    try {
+        const { results } = await pokemonApi.listTypes();
+        return results.map(({ name }) => name);
+    } catch (e) {
+        throw new Error('Failed to fetch pokemon type list');
+    }
+}
+
 function getFilteredList(results: NamedAPIResource[], query: string) {
     return results.filter(({ name }) => name.toLowerCase().includes(query.toLowerCase()));
 }
