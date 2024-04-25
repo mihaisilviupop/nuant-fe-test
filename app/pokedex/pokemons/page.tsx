@@ -1,6 +1,7 @@
 import { getPokemonListTotalPages } from '@/app/lib/data';
 import Pagination from '@/app/ui/pokemonList/pagination';
 import PokemonsTable from '@/app/ui/pokemonList/table'
+import Search from '@/app/ui/search';
 
 export default async function Page({
     searchParams,
@@ -17,6 +18,9 @@ export default async function Page({
 
     return (
         <div className="w-full">
+            <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
+                <Search placeholder="Search Pokemon by name" />
+            </div>
             <PokemonsTable currentPage={currentPage} query={query} />
             <div className="mt-5 flex w-full justify-center">
                 <Pagination totalPages={totalPages} />
