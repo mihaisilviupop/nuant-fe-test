@@ -4,20 +4,41 @@ import { generatePagination } from '@/app/lib/utils';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useEffect } from 'react';
 
 export default function Pagination({ totalPages }: { totalPages: number }) {
   const pathname = usePathname();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get('page')) || 1;
+  const params = new URLSearchParams(searchParams);
 
   const createPageURL = (pageNumber: number | string) => {
-    const params = new URLSearchParams(searchParams);
     params.set('page', pageNumber.toString());
     return `${pathname}?${params.toString()}`;
   };
 
   const allPages = generatePagination(currentPage, totalPages);
+
+  // Get a new searchParams string by merging the current
+  // searchParams with a provided key/value pair
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString())
+      params.set(name, value)
+
+      return params.toString()
+    },
+    [searchParams]
+  )
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      // reset page query param
+      router.push('/pokedex/pokemons' + '?' + createQueryString('page', '1'));
+    }
+  });
 
   return (
     <>
@@ -39,7 +60,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
             return (
               <PaginationNumber
-                key={page}
+                key={index}
                 href={createPageURL(page)}
                 page={page}
                 position={position}
