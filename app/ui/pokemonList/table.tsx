@@ -36,6 +36,7 @@ export default async function PokemonsTable({
                                     width={44}
                                     height={44}
                                     alt={`${name}'s front picture`}
+                                    priority={true}
                                 />
                                 <p>{name}</p>
                             </div>
