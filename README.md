@@ -60,7 +60,7 @@ Overall, approach the task with professionalism, attention to detail, and a focu
     - Other (please specify)
 
 # Folder structure
-  - app/lib: data fetchings and such
+  - app/lib: data fetchings and utils
   - app/ui: UI components
   - app/ui/pokemonList: components related to pokemon list
   - app/ui/pokemonDetails: components related to pokemon details

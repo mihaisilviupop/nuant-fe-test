@@ -4,9 +4,11 @@ const pokemonApi = new PokemonClient();
 
 const PAGE_LIMIT = 20;
 
-export async function fetchPokemonList(currentPage = 0, limit = PAGE_LIMIT) {
+export async function fetchPokemonList(currentPage = 1, limit = PAGE_LIMIT) {
     try {
-        const { results } = await pokemonApi.listPokemons(currentPage * PAGE_LIMIT, limit);
+        // pokenode pagination API starts from 0
+        // but in UI we will show starting from 1
+        const { results } = await pokemonApi.listPokemons((currentPage - 1) * PAGE_LIMIT, limit);
 
         const pokemonListPromiseResultList = await Promise.allSettled(
             results.map(({ name }) => pokemonApi.getPokemonByName(name))
@@ -24,7 +26,7 @@ export async function fetchPokemonList(currentPage = 0, limit = PAGE_LIMIT) {
 export async function getPokemonListTotalPages() {
     try {
         const { count } = await pokemonApi.listPokemons();
-        return count / PAGE_LIMIT;
+        return Math.ceil(count / PAGE_LIMIT);
     } catch (e) {
         throw new Error('Failed to fetch pokemon total pages number');
     }

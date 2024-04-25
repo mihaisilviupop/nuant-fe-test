@@ -1,4 +1,5 @@
 import { getPokemonListTotalPages } from '@/app/lib/data';
+import Pagination from '@/app/ui/pokemonList/pagination';
 import PokemonsTable from '@/app/ui/pokemonList/table'
 
 export default async function Page({
@@ -8,12 +9,17 @@ export default async function Page({
         page?: string;
     };
 }) {
-    const currentPage = Number(searchParams?.page) || 0;
+    const currentPage = Number(searchParams?.page) || 1;
 
     const totalPages = await getPokemonListTotalPages();
     console.log('CNX ~ totalPages:', totalPages);
 
     return (
-        <PokemonsTable currentPage={currentPage} />
+        <div className="w-full">
+            <PokemonsTable currentPage={currentPage} />
+            <div className="mt-5 flex w-full justify-center">
+                <Pagination totalPages={totalPages} />
+            </div>
+        </div>
     )
 }
