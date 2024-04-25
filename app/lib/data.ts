@@ -2,17 +2,31 @@ import { Pokemon, PokemonClient } from 'pokenode-ts';
 
 const pokemonApi = new PokemonClient();
 
-export async function fetchPokemonList(offset = 0, limit = 20) {
+const PAGE_LIMIT = 20;
+
+export async function fetchPokemonList(currentPage = 0, limit = PAGE_LIMIT) {
     try {
-        const { results, count } = await pokemonApi.listPokemons(offset, limit);
-        const pokemonList = await Promise.allSettled(
+        const { results } = await pokemonApi.listPokemons(currentPage * PAGE_LIMIT, limit);
+
+        const pokemonListPromiseResultList = await Promise.allSettled(
             results.map(({ name }) => pokemonApi.getPokemonByName(name))
         );
-        console.log('total number of resources', count);
-        const list = pokemonList
+
+        const pokemonList = pokemonListPromiseResultList
             .reduce((accumulator, result) => result.status === 'fulfilled' ? [...accumulator, result.value] : accumulator, [] as Pokemon[]);
-        return list;
+
+        return pokemonList
     } catch (e) {
         throw new Error('Failed to fetch pokemon list');
     }
+}
+
+export async function getPokemonListTotalPages() {
+    try {
+        const { count } = await pokemonApi.listPokemons();
+        return count / PAGE_LIMIT;
+    } catch (e) {
+        throw new Error('Failed to fetch pokemon total pages number');
+    }
+
 }
