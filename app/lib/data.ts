@@ -62,6 +62,14 @@ export async function fetchPokemonTypeList() {
     }
 }
 
+export async function getPokemonById(id: string) {
+    try {
+        return await pokemonApi.getPokemonById(Number(id));
+    } catch (e) {
+        throw new Error('Failed to fetch pokemon details');
+    }
+}
+
 /**
  * fetch and filter pokemon list
  * 
