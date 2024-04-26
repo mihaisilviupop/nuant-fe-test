@@ -10,17 +10,19 @@ export default async function Page({ params }: { params: { id: string } }) {
     return (
         <div className="w-full">
             <h1 className='p-4 text-2xl capitalize'>{pokemon.name}</h1>
-            <Description>
-                <DescriptionDetail term='Weight' details={`${convertHgToKg(pokemon.weight)} kg`} />
-                <DescriptionDetail term='Height' details={`${convertDmToCm(pokemon.height)} cm`} />
-            </Description>
-            <Image
-                src={imageUrl}
-                alt={`${pokemon.name} profile picture`}
-                width={250}
-                height={250}
-                className="rounded-full w-96 h-96"
-            ></Image>
+            <div className='flex flex-row flex-wrap justify-between p-4'>
+                <Description>
+                    <DescriptionDetail term='Weight' details={`${convertHgToKg(pokemon.weight)} kg`} />
+                    <DescriptionDetail term='Height' details={`${convertDmToCm(pokemon.height)} cm`} />
+                </Description>
+                <Image
+                    src={imageUrl}
+                    alt={`${pokemon.name} profile picture`}
+                    width={250}
+                    height={250}
+                    className="rounded-full"
+                ></Image>
+            </div>
         </div>
     );
 }
