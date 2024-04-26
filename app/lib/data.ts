@@ -33,7 +33,7 @@ export async function fetchPokemonList({
                 id,
                 name,
                 types,
-                image: sprites.front_shiny ?? sprites.front_default
+                image: sprites.front_default ?? sprites.front_shiny
             }
         });
     } catch (e) {
