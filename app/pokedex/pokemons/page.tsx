@@ -22,11 +22,14 @@ export default async function Page({
 
     return (
         <div className="w-full">
-            <div className="mt-4 flex items-center justify-center gap-2 md:mt-8">
+            <h1 className='px-4 text-2xl'>Pokedex</h1>
+            <div className="mt-4 px-4 flex items-center justify-center gap-2 md:mt-8">
                 <Search placeholder="Search Pokemon by name" />
                 <Dropdown placeholder='All Pokemon by types' list={typeList} />
             </div>
-            <PokemonsTable currentPage={currentPage} query={query} type={type} />
+            <div className="px-4 py-5">
+                <PokemonsTable currentPage={currentPage} query={query} type={type} />
+            </div>
             <div className="mt-5 flex w-full justify-center">
                 <Pagination totalPages={totalPages} />
             </div>
