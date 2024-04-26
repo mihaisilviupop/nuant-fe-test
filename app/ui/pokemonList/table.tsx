@@ -41,7 +41,7 @@ export default async function PokemonsTable({
                                     alt={`${name}'s front picture`}
                                     priority={true}
                                 />
-                                <p>{name}</p>
+                                <p className='capitalize'>{name}</p>
                             </div>
                         </td>
                     </tr>
