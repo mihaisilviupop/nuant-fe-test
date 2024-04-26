@@ -2,6 +2,7 @@ import { getPokemonById } from '@/app/lib/data';
 import { convertDmToCm, convertHgToKg, getPokemonImage } from '@/app/lib/utils';
 import Description from '@/app/ui/pokemonDetails/description';
 import DescriptionDetail from '@/app/ui/pokemonDetails/description-detail';
+import DescriptionDetailList from '@/app/ui/pokemonDetails/description-detail-list';
 import Image from 'next/image';
 
 export default async function Page({ params }: { params: { id: string } }) {
@@ -14,6 +15,9 @@ export default async function Page({ params }: { params: { id: string } }) {
                 <Description>
                     <DescriptionDetail term='Weight' details={`${convertHgToKg(pokemon.weight)} kg`} />
                     <DescriptionDetail term='Height' details={`${convertDmToCm(pokemon.height)} cm`} />
+                    <DescriptionDetail term='Species' details={pokemon.species.name} />
+                    <DescriptionDetailList term='Types' details={pokemon.types.map(({ type }) => type.name)} />
+                    <DescriptionDetailList term='Abilities' details={pokemon.abilities.map(({ ability }) => ability.name)} />
                 </Description>
                 <Image
                     src={imageUrl}
