@@ -19,13 +19,15 @@ export default async function Page({ params }: { params: { id: string } }) {
                     <DescriptionDetailList term='Types' details={pokemon.types.map(({ type }) => type.name)} />
                     <DescriptionDetailList term='Abilities' details={pokemon.abilities.map(({ ability }) => ability.name)} />
                 </Description>
-                <Image
-                    src={imageUrl}
-                    alt={`${pokemon.name} profile picture`}
-                    width={250}
-                    height={250}
-                    className="rounded-full"
-                ></Image>
+                <div>
+                    <Image
+                        src={imageUrl}
+                        alt={`${pokemon.name} profile picture`}
+                        width={250}
+                        height={250}
+                        className='max-w-min'
+                    ></Image>
+                </div>
             </div>
         </div>
     );
