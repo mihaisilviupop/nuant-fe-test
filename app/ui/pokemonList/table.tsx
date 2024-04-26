@@ -18,9 +18,9 @@ export default async function PokemonsTable({
     });
 
     return <table className="min-w-full md:table dark:text-white light:text-gray-900">
-        <thead className="rounded-lg text-left text-sm font-normal">
+        <thead className="rounded-lg text-left text-sm font-normal sr-only">
             <tr>
-                <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                <th scope="col">
                     Pokemon
                 </th>
             </tr>
