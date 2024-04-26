@@ -1,4 +1,4 @@
-import type { NamedAPIResource, Pokemon } from 'pokenode-ts';
+import type { NamedAPIResource, Pokemon, PokemonSprites } from 'pokenode-ts';
 
 export const generatePagination = (currentPage: number, totalPages: number) => {
     // If the total number of pages is 7 or less,
@@ -47,4 +47,11 @@ export function convertHgToKg(weight: number) {
 
 export function convertDmToCm(height: number) {
     return height * 10;
+}
+
+export function getPokemonImage(sprites: PokemonSprites) {
+    return sprites.other?.home?.front_default
+        || sprites.other?.dream_world.front_default
+        || sprites.other?.['official-artwork']?.front_default
+        || '/pokeball.webp';
 }
