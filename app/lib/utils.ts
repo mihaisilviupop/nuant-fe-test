@@ -1,3 +1,5 @@
+import type { NamedAPIResource, Pokemon } from 'pokenode-ts';
+
 export const generatePagination = (currentPage: number, totalPages: number) => {
     // If the total number of pages is 7 or less,
     // display all pages without any ellipsis.
@@ -30,3 +32,11 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
         totalPages,
     ];
 };
+
+export function filterListByName(results: NamedAPIResource[], query: string) {
+    return results.filter(({ name }) => name.toLowerCase().includes(query.toLowerCase()));
+}
+
+export function filterListByType(results: Pokemon[], type: string) {
+    return results.filter(item => item.types.some((pokemonType) => pokemonType.type.name === type));
+}
