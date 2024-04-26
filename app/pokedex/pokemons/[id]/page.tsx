@@ -1,5 +1,6 @@
 import { getPokemonById } from '@/app/lib/data';
 import { convertDmToCm, convertHgToKg, getPokemonImage } from '@/app/lib/utils';
+import BackButton from '@/app/ui/back-button';
 import Description from '@/app/ui/pokemonDetails/description';
 import DescriptionDetail from '@/app/ui/pokemonDetails/description-detail';
 import DescriptionDetailList from '@/app/ui/pokemonDetails/description-detail-list';
@@ -10,7 +11,10 @@ export default async function Page({ params }: { params: { id: string } }) {
     const imageUrl = getPokemonImage(pokemon.sprites);
     return (
         <div className="w-full">
-            <h1 className='p-4 text-2xl capitalize'>{pokemon.name}</h1>
+            <div className='flex flew-row items-center'>
+                <BackButton />
+                <h1 className='p-4 text-2xl capitalize'>{pokemon.name}</h1>
+            </div>
             <div className='flex flex-row flex-wrap justify-between p-4'>
                 <Description>
                     <DescriptionDetail term='Weight' details={`${convertHgToKg(pokemon.weight)} kg`} />
