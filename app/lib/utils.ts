@@ -45,6 +45,6 @@ export function convertHgToKg(weight: number) {
     return weight * 0.1;
 }
 
-export function convertDmToMeters(height: number) {
-    return height * 0.1;
+export function convertDmToCm(height: number) {
+    return height * 10;
 }
