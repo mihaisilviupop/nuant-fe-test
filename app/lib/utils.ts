@@ -40,3 +40,11 @@ export function filterListByName(results: NamedAPIResource[], query: string) {
 export function filterListByType(results: Pokemon[], type: string) {
     return results.filter(item => item.types.some((pokemonType) => pokemonType.type.name === type));
 }
+
+export function convertHgToKg(weight: number) {
+    return weight * 0.1;
+}
+
+export function convertDmToMeters(height: number) {
+    return height * 0.1;
+}
