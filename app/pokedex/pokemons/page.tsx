@@ -10,12 +10,14 @@ export default async function Page({
     searchParams?: {
         page?: string;
         query?: string;
+        type?: string;
     };
 }) {
     const currentPage = Number(searchParams?.page) || 1;
     const query = searchParams?.query || '';
+    const type = searchParams?.type || 'all';
 
-    const totalPages = await getPokemonListTotalPages(query);
+    const totalPages = await getPokemonListTotalPages(query, type);
     const typeList = await fetchPokemonTypeList();
 
     return (
@@ -24,7 +26,7 @@ export default async function Page({
                 <Search placeholder="Search Pokemon by name" />
                 <Dropdown placeholder='All Pokemon by types' list={typeList} />
             </div>
-            <PokemonsTable currentPage={currentPage} query={query} />
+            <PokemonsTable currentPage={currentPage} query={query} type={type} />
             <div className="mt-5 flex w-full justify-center">
                 <Pagination totalPages={totalPages} />
             </div>

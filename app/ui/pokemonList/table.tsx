@@ -3,14 +3,17 @@ import Image from 'next/image';
 
 export default async function PokemonsTable({
     currentPage,
-    query
+    query,
+    type
 }: {
     currentPage: number;
     query: string;
+    type: string;
 }) {
     const pokemonList = await fetchPokemonList({
         currentPage,
-        query
+        query,
+        type
     });
 
     return <table className="min-w-full md:table dark:text-white light:text-gray-900">
