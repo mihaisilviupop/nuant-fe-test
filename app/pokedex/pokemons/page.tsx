@@ -25,7 +25,7 @@ export default async function Page({
     return (
         <div className="w-full">
             <h1 className='p-4 text-2xl'>Pokedex</h1>
-            <div className="mt-4 px-4 flex items-center justify-center gap-2 md:mt-8">
+            <div className="mt-4 px-4 flex flex-col sm:flex-row items-center justify-center gap-2 md:mt-8">
                 <Search placeholder="Search Pokemon by name" />
                 <Dropdown placeholder='All Pokemon types' list={typeList} />
             </div>

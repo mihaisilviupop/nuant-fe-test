@@ -22,7 +22,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
   }, 300);
 
   return (
-    <form className="flex items-center max-w-7xl w-2/3">
+    <form className="flex items-center max-w-7xl w-full">
       <label htmlFor="simple-search" className="sr-only">{placeholder}</label>
       <div className="relative w-full">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
