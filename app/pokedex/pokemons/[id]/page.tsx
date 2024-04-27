@@ -5,6 +5,7 @@ import Description from '@/app/ui/pokemonDetails/description';
 import DescriptionDetail from '@/app/ui/pokemonDetails/description-detail';
 import DescriptionDetailList from '@/app/ui/pokemonDetails/description-detail-list';
 import Image from 'next/image';
+import { PokemonAbility, PokemonType } from 'pokenode-ts';
 
 export default async function Page({ params }: { params: { id: string } }) {
     const pokemon = await getPokemonById(params.id);
@@ -20,8 +21,8 @@ export default async function Page({ params }: { params: { id: string } }) {
                     <DescriptionDetail term='Weight' details={`${convertHgToKg(pokemon.weight)} kg`} />
                     <DescriptionDetail term='Height' details={`${convertDmToCm(pokemon.height)} cm`} />
                     <DescriptionDetail term='Species' details={pokemon.species.name} />
-                    <DescriptionDetailList term='Types' details={pokemon.types.map(({ type }) => type.name)} />
-                    <DescriptionDetailList term='Abilities' details={pokemon.abilities.map(({ ability }) => ability.name)} />
+                    <DescriptionDetailList term='Types' details={getPokemonTypeList(pokemon.types)} />
+                    <DescriptionDetailList term='Abilities' details={getPokemonAbilityList(pokemon.abilities)} />
                 </Description>
                 <div>
                     <Image
@@ -35,4 +36,15 @@ export default async function Page({ params }: { params: { id: string } }) {
             </div>
         </div>
     );
+}
+
+function getPokemonAbilityList(abilities: PokemonAbility[]) {
+    return abilities.map(({ ability: { name } }) => ({ name }));
+}
+
+function getPokemonTypeList(types: PokemonType[]) {
+    return types.map(({ type: { name } }) => ({
+        name,
+        url: `/pokedex/pokemons?type=${name}`
+    }));
 }
