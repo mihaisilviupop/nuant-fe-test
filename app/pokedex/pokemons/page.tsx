@@ -4,7 +4,12 @@ import Pagination from '@/app/ui/pokemonList/pagination';
 import PokemonsTable from '@/app/ui/pokemonList/table'
 import { PokemonsTableSkeleton } from '@/app/ui/pokemonList/tableSkeleton';
 import Search from '@/app/ui/search';
+import { Metadata } from 'next';
 import { Suspense } from 'react';
+
+export const metadata: Metadata = {
+    title: 'Pokemons',
+};
 
 export default async function Page({
     searchParams,
