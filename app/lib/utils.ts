@@ -55,3 +55,7 @@ export function getPokemonImage(sprites: PokemonSprites) {
         || sprites.other?.['official-artwork']?.front_default
         || '/pokeball.webp';
 }
+
+export function capitalizeString(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+}

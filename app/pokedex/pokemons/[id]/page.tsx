@@ -1,5 +1,5 @@
 import { getPokemonById } from '@/app/lib/data';
-import { convertDmToCm, convertHgToKg, getPokemonImage } from '@/app/lib/utils';
+import { capitalizeString, convertDmToCm, convertHgToKg, getPokemonImage } from '@/app/lib/utils';
 import BackButton from '@/app/ui/back-button';
 import Description from '@/app/ui/pokemonDetails/description';
 import DescriptionDetail from '@/app/ui/pokemonDetails/description-detail';
@@ -14,9 +14,8 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const pokemon = await getPokemonById(params.id);
-
     return {
-        title: pokemon.name + ' details',
+        title: capitalizeString(pokemon.name) + ' details',
     }
 }
 
