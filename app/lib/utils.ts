@@ -42,7 +42,7 @@ export function filterListByType(results: Pokemon[], type: string) {
 }
 
 export function convertHgToKg(weight: number) {
-    return weight * 0.1;
+    return (weight * 0.1).toFixed(2);
 }
 
 export function convertDmToCm(height: number) {
