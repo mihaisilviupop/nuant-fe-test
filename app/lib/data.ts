@@ -1,7 +1,6 @@
+import { fetchPokemonById, fetchPokemonByName, fetchPokemonTypes, fetchPokemons } from '@/app/lib/pokemon-api';
 import { filterListByName, filterListByType } from '@/app/lib/utils';
-import { type NamedAPIResource, type Pokemon, PokemonClient } from 'pokenode-ts';
-
-const pokemonApi = new PokemonClient();
+import type { NamedAPIResource, Pokemon } from 'pokenode-ts';
 
 const PAGE_LIMIT = 20;
 const DEFAULT_OFFSET = 0;
@@ -55,7 +54,7 @@ export async function getPokemonListTotalPages(query = '', type = 'all') {
 
 export async function fetchPokemonTypeList() {
     try {
-        const { results } = await pokemonApi.listTypes();
+        const { results } = await fetchPokemonTypes();
         return results.map(({ name }) => name);
     } catch (e) {
         throw new Error('Failed to fetch pokemon type list');
@@ -64,7 +63,7 @@ export async function fetchPokemonTypeList() {
 
 export async function getPokemonById(id: string) {
     try {
-        return await pokemonApi.getPokemonById(Number(id));
+        return await fetchPokemonById(id);
     } catch (e) {
         throw new Error('Failed to fetch pokemon details');
     }
@@ -91,7 +90,7 @@ async function fetchAndFilterPokemonListByName({
         limit = NO_PAGE_LIMIT;
     }
 
-    let { results } = await pokemonApi.listPokemons(offset, limit);
+    let { results } = await fetchPokemons(offset, limit);
 
     return query ? filterListByName(results, query) : results;
 }
@@ -101,7 +100,7 @@ async function fetchAndFilterPokemonListByType(
     type = 'all',
 ) {
     const pokemonListPromiseResultList = await Promise.allSettled(
-        results.map(({ name }) => pokemonApi.getPokemonByName(name))
+        results.map(({ name }) => fetchPokemonByName(name))
     );
 
     const pokemonList = pokemonListPromiseResultList
