@@ -2,7 +2,9 @@ import { fetchPokemonTypeList, getPokemonListTotalPages } from '@/app/lib/data';
 import Dropdown from '@/app/ui/dropdown';
 import Pagination from '@/app/ui/pokemonList/pagination';
 import PokemonsTable from '@/app/ui/pokemonList/table'
+import { PokemonsTableSkeleton } from '@/app/ui/pokemonList/tableSkeleton';
 import Search from '@/app/ui/search';
+import { Suspense } from 'react';
 
 export default async function Page({
     searchParams,
@@ -28,7 +30,9 @@ export default async function Page({
                 <Dropdown placeholder='All Pokemon types' list={typeList} />
             </div>
             <div className="px-4 py-5">
-                <PokemonsTable currentPage={currentPage} query={query} type={type} />
+                <Suspense key={query + currentPage + type} fallback={<PokemonsTableSkeleton />}>
+                    <PokemonsTable currentPage={currentPage} query={query} type={type} />
+                </Suspense>
             </div>
             <div className="mt-5 flex w-full justify-center">
                 <Pagination totalPages={totalPages} />
