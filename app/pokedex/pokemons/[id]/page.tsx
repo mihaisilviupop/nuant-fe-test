@@ -4,10 +4,23 @@ import BackButton from '@/app/ui/back-button';
 import Description from '@/app/ui/pokemonDetails/description';
 import DescriptionDetail from '@/app/ui/pokemonDetails/description-detail';
 import DescriptionDetailList from '@/app/ui/pokemonDetails/description-detail-list';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import { PokemonAbility, PokemonType } from 'pokenode-ts';
 
-export default async function Page({ params }: { params: { id: string } }) {
+type Props = {
+    params: { id: string }
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const pokemon = await getPokemonById(params.id);
+
+    return {
+        title: pokemon.name + ' details',
+    }
+}
+
+export default async function Page({ params }: Props) {
     const pokemon = await getPokemonById(params.id);
     const imageUrl = getPokemonImage(pokemon.sprites);
     return (
